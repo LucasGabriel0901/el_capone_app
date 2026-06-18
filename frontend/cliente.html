@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Cliente | Al Capone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/cliente.css">
+    
+</head>
+<body class="painel-body">
+
+  
+
+   <header class="navbar">
+        <div class="logo">
+            <img src="assets/logo_preto.jpeg" alt="El Capone" class="img-logo-dinamico" style="height: 65px; max-height: 100px;">
+        </div>
+        <div class="boas-vindas-container">
+        <span class="txt-saudacao">Bem-vindo de volta,</span>
+        <h2 id="nome-cliente-header" class="txt-nome-cliente">Carregando...</h2>
+    </div>
+
+        
+        <nav>
+            <a href="#" id="nav-agendar" class="ativo" onclick="trocarAbaCliente('agendar')">Novo Agendamento</a>
+            <a href="#" id="nav-historico" onclick="trocarAbaCliente('historico')">Meus Agendamentos</a>
+        </nav>
+        <div class="nav-botoes">
+            <button class="btn-sair" onclick="window.location.href='index.html'">SAIR</button>
+        </div>
+    </header>
+
+    <main class="container-painel">
+        
+        <section id="aba-agendar" class="painel-section">
+            
+            <section class="banner-promocional">
+                <div class="banner-content">
+                    <span class="tag-premium">VIP AL CAPONE</span>
+                    <h2>O MELHOR PARA VOCÊ</h2>
+                    <p>Agende seu horário com os mestres da barbearia.</p>
+                </div>
+            </section>
+
+            <div class="header-vitrine">
+                <h2 class="subtitulo-sessao">SELECIONE SEU</h2>
+                <h1 class="titulo-sessao">PRÓXIMO ESTILO</h1>
+                <div class="linha-dourada"></div>
+            </div>
+
+            <div class="servicos-grid-vitrine">
+                
+                <div class="servico-card-premium" onclick="abrirAgendamento('Corte')">
+                    <div class="icone-grafico"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5"><path d="M6 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 0l3 3 10-10M18 7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 0l-3 3-4-4M12 12l-3 3-6-6M12 12l3 3 6-6"></path></svg></div>
+                    <h3>CORTE</h3>
+                    <p class="preco-premium">R$ 40,00</p>
+                    <span class="btn-selecionar-texto">AGENDAR ➔</span>
+                </div>
+
+                <div class="servico-card-premium" onclick="abrirAgendamento('Barba')">
+                    <div class="icone-grafico"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5"><path d="M3 21h18M12 3v18M7 8l5-5 5 5"></path></svg></div>
+                    <h3>BARBA</h3>
+                    <p class="preco-premium">R$ 30,00</p>
+                    <span class="btn-selecionar-texto">AGENDAR ➔</span>
+                </div>
+
+                <div class="servico-card-premium" onclick="abrirAgendamento('Corte & Barba')">
+                    <div class="icone-grafico"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5"><path d="M20 7h-9m9 4h-7m7 4h-5M3 17V7a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v10"></path></svg></div>
+                    <h3>CORTE & BARBA</h3>
+                    <p class="preco-premium">R$ 70,00</p>
+                    <span class="btn-selecionar-texto">AGENDAR ➔</span>
+                </div>
+
+                <div class="servico-card-premium" onclick="abrirAgendamento('Limpeza')">
+                    <div class="icone-grafico"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></div>
+                    <h3>LIMPEZA DE PELE</h3>
+                    <p class="preco-premium">R$ 25,00</p>
+                    <span class="btn-selecionar-texto">AGENDAR ➔</span>
+                </div>
+
+                <div class="servico-card-premium" onclick="abrirAgendamento('Botox')">
+                    <div class="icone-grafico"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="1.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
+                    <h3>BOTOX</h3>
+                    <p class="preco-premium">R$ 80,00</p>
+                    <span class="btn-selecionar-texto">AGENDAR ➔</span>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="aba-historico" class="painel-section" style="display: none;">
+            <div class="header-vitrine">
+                <h2 class="subtitulo-sessao">ACOMPANHE SEUS</h2>
+                <h1 class="titulo-sessao">AGENDAMENTOS</h1>
+                <div class="linha-dourada"></div>
+            </div>
+            
+            <div style="background-color: #111; padding: 30px; border-radius: 8px; border-top: 2px solid #d4af37; margin-bottom: 30px;">
+                <h3 style="color: #d4af37; font-family: 'Oswald', sans-serif; margin-bottom: 15px;">⏳ PRÓXIMOS CORTES</h3>
+                <p style="color: #fff; font-size: 14px;" id="listaFuturos">Nenhum agendamento pendente.</p>
+            </div>
+
+            <div style="background-color: #0a0a0a; padding: 30px; border-radius: 8px; border: 1px solid #222;">
+                <h3 style="color: #888; font-family: 'Oswald', sans-serif; margin-bottom: 15px;">✅ HISTÓRICO CONCLUÍDO</h3>
+                <p style="color: #555; font-size: 14px;" id="listaPassados">O histórico dos seus cortes aparecerá aqui quando o barbeiro concluir o serviço.</p>
+            </div>
+        </section>
+
+    </main>
+<div id="modalAgendamento" class="modal">
+        <div class="modal-content detail-modal">
+            <span class="fechar-modal" onclick="fecharModalAgendamento()">&times;</span>
+            <h2 id="agendamentoTitulo">AGENDAR</h2>
+            <div class="linha-dourada" style="margin: 10px auto 20px auto;"></div>
+            
+            <div class="step-container">
+                <div style="margin-bottom: 20px;">
+                    <label class="label-premium">1. Escolha o Profissional</label>
+                    <select id="barbeiroAgendamento" onchange="checarCamposParaCarregarHorarios()">
+                        <option value="">Carregando barbeiros...</option>
+                    </select>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <label class="label-premium">2. Escolha a Data</label>
+                    <input type="date" id="dataAgendamento" onchange="checarCamposParaCarregarHorarios()">
+                </div>
+                
+               <div id="secaoHorarios" style="display: none; margin-top: 20px;">
+    <label class="label-premium">3. Horários Disponíveis</label>
+    <div class="grid-horarios" id="containerHorarios"></div>
+    
+    <div style="margin-bottom: 20px; margin-top: 25px; text-align: left;">
+        <label class="label-premium">4. Forma de Pagamento</label>
+        <select id="formaPagamento" class="input-admin-auth">
+            <option value="">Selecione o pagamento...</option>
+            <option value="Pagar no local">Pagar no local</option>
+        </select>
+    </div>
+    <button class="btn-dourado-full" id="btnConfirmarReserva" disabled onclick="finalizarAgendamento()">CONFIRMAR AGENDAMENTO</button>
+</div>
+            </div>
+        </div>
+    </div>
+    <script src="js/cliente.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,217 @@
+/* HERO SECTION - O Visual do Nelson */
+.hero {
+    height: 100vh;
+    background-image: linear-gradient(to right, rgba(10,10,10,0.9) 0%, rgba(10,10,10,0.4) 100%), 
+                      url('../assets/Fundo_al.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 0 10%;
+}
+
+.titulo-principal {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(40px, 8vw, 75px);
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin: 15px 0;
+}
+
+.linha-dourada {
+    width: 60px;
+    height: 3px;
+    background-color: #d4af37;
+    margin-bottom: 25px;
+}
+
+/* MODAL PREMIUM (BORRADO) */
+.modal {
+    display: none; 
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 10000 !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #111;
+    border-top: 4px solid #d4af37;
+    padding: 45px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 30px 60px rgba(0,0,0,1);
+}
+
+/* GARANTINDO O DARK MODE NOS CAMPOS */
+.auth-form input, 
+.form-premium-reserva input, 
+.form-premium-reserva select {
+    background-color: #121212 !important; 
+    color: #ffffff !important;           
+    border: 1px solid #333 !important;   
+    padding: 12px;
+    margin-bottom: 15px;
+    width: 100%;
+    border-radius: 4px;
+    outline: none;                      
+}
+
+/* ESTILO DO LINK (FAÇA LOGIN / CADASTRE-SE) */
+.link-rodape a {
+    color: #d4af37 !important;          
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* BOTÃO DE AGENDAR (DA NAVBAR) */
+.btn-agendar {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    border: 2px solid #d4af37 !important;
+    padding: 10px 20px;
+    font-family: 'Oswald', sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-agendar:hover {
+    background-color: #d4af37 !important;
+    color: #000 !important;
+}
+
+/* FORMULÁRIOS ESTILIZADOS */
+.auth-form h2 {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.auth-form input {
+    background-color: #121212 !important; 
+    border: 1px solid #333 !important;   
+    color: white !important;
+    padding: 12px;
+    margin-bottom: 15px;
+    width: 100%;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.input-senha-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.toggle-senha {
+    position: absolute;
+    right: 12px;
+    top: 12px; 
+    cursor: pointer;
+    color: #d4af37; 
+    z-index: 10;
+}
+
+/* BOTÃO DOURADO DE ELITE */
+.btn-dourado-full {
+    width: 100%;
+    background-color: #d4af37 !important; 
+    color: #000 !important;               
+    padding: 15px;
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-dourado-full:hover:not(:disabled) {
+    background-color: #b5952f !important;
+}
+
+.btn-dourado-full:disabled {
+    background-color: #222 !important;
+    color: #555 !important;
+    cursor: not-allowed;
+}
+
+.link-rodape a {
+    color: #d4af37;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Estilo da dica de senha */
+.hint-senha {
+    font-size: 11px;
+    margin-top: -10px; 
+    margin-bottom: 15px;
+    text-align: left;
+    color: #888;
+    transition: 0.3s;
+}
+
+/* Botão de Criar Conta (Mais luxuoso) */
+#btnCriarConta {
+    background-color: #333; 
+    color: #777;
+    border: none;
+    padding: 15px;
+    border-radius: 4px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    cursor: not-allowed;
+    transition: 0.4s;
+}
+
+/* Quando o botão é habilitado pelo JavaScript */
+#btnCriarConta:not(:disabled) {
+    background-color: #d4af37;
+    color: #000;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+/* =========================================
+   📱 MODO CELULAR: CARD DE LOGIN CENTRALIZADO
+   ========================================= */
+@media (max-width: 768px) {
+    .hero { 
+        padding: 0 5%; 
+        text-align: center; 
+    }
+
+    .hero-content { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+    }
+
+    .titulo-principal { 
+        font-size: 50px !important; 
+    }
+
+    .modal {
+        align-items: center !important; 
+        padding: 20px !important;
+    }
+    
+    .modal-content {
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+        border-radius: 8px !important;
+        padding: 30px 20px !important;
+        animation: none !important;
+    }
+}

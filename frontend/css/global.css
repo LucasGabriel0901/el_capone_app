@@ -1,0 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Oswald:wght@500;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* =========================================
+   ESTRUTURA BASE (DARK MODE EL CAPONE)
+   ========================================= */
+body {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.painel-body {
+    background-color: #050505;
+}
+
+/* =========================================
+   CABEÇALHO ORIGINAL (NAVBAR DO COMPUTADOR)
+   ========================================= */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(10, 10, 10, 0.95);
+    border-bottom: 2px solid #d4af37;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.navbar .logo {
+    color: #d4af37;
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.navbar nav a {
+    color: #888;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+    transition: color 0.3s ease;
+    font-family: 'Oswald', sans-serif;
+}
+
+.navbar nav a:hover, .navbar nav a.ativo {
+    color: #d4af37;
+}
+
+.nav-admin {
+    border-left: 1px solid #333;
+    padding-left: 30px;
+}
+
+/* =========================================
+   BOTÃO SAIR E BOTOES GLOBAIS
+   ========================================= */
+.btn-sair {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    border: 2px solid #d4af37 !important;
+    padding: 8px 25px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    border-radius: 4px;
+}
+
+.btn-sair:hover {
+    background-color: #d4af37 !important;
+    color: #000000 !important;
+}
+
+.btn-dourado-full {
+    width: 100%;
+    background-color: #d4af37 !important;
+    color: #000000 !important;
+    padding: 15px;
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+
+.btn-dourado-full:hover {
+    background-color: #b5952f !important;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.link-rodape {
+    color: #888;
+    font-size: 14px;
+}
+
+.link-rodape a {
+    color: #d4af37 !important;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.link-rodape a:hover {
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   📱 INTERFACE MOBILE E TELAS REDUZIDAS (SIMÉTRICO E SEGURO)
+   ========================================================= */
+@media (max-width: 768px) {
+    
+    body, .painel-body {
+        overflow-x: hidden !important; 
+    }
+
+    /* 1. CABEÇALHO SIMPLES E ESTÁTICO (Nunca sobrepõe nada) */
+    .navbar {
+        position: static !important; 
+        flex-direction: column !important;
+        align-items: center !important;
+        padding: 20px 5% 15px 5% !important;
+        height: auto !important;
+        background-color: #0a0a0a !important;
+        border-bottom: 1px solid #222 !important;
+    }
+
+    .navbar .logo { font-size: 24px !important; text-align: center !important; margin-bottom: 15px !important; }
+    .navbar .logo img { height: 55px !important; margin-bottom: 15px !important; }
+
+    .boas-vindas-container {
+        align-items: center !important;
+        text-align: center !important;
+        margin-bottom: 15px !important;
+        width: 100% !important;
+    }
+
+    /* 2. MENU LIMPO (Sem formato de pílula, apenas links alinhados) */
+    .navbar nav {
+        position: static !important;
+        transform: none !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        width: 100% !important;
+        background: transparent !important;
+        border: none !important; /* Tira qualquer borda dourada em volta do grupo */
+        box-shadow: none !important;
+        gap: 20px !important; /* Dá um respiro confortável entre os botões */
+        margin: 0 0 20px 0 !important;
+        padding: 0 !important;
+    }
+
+    .navbar nav a {
+        font-size: 13px !important;
+        padding: 5px !important;
+        background: transparent !important;
+        border: none !important;
+        margin: 0 !important;
+    }
+
+    /* 3. BOTÕES PRINCIPAIS (Ocupam a largura da tela para facilitar o clique) */
+    .nav-botoes { position: static !important; width: 100% !important; text-align: center !important; }
+    .btn-sair, .btn-agendar { width: 100% !important; padding: 15px !important; font-size: 14px !important; }
+
+    /* 4. CONTEÚDO DA PÁGINA (Alinhamento natural) */
+    .container-painel {
+        padding-top: 30px !important; 
+        padding-bottom: 50px !important; 
+        padding-left: 5% !important;
+        padding-right: 5% !important;
+    }
+
+    /* 5. CARDS DE SERVIÇOS E HORÁRIOS (Ajustados e Simétricos) */
+    .servicos-grid-vitrine { grid-template-columns: 1fr !important; gap: 15px !important; }
+    .servico-card-premium { padding: 25px 20px !important; }
+    
+    .grid-horarios { grid-template-columns: repeat(2, 1fr) !important; gap: 12px !important; }
+    .hora-slot { padding: 15px !important; font-size: 15px !important; }
+    
+    .card-agendamento { padding: 20px !important; overflow-x: auto !important; }
+    .tabela-premium { min-width: 500px !important; }
+}

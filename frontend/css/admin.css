@@ -1,0 +1,169 @@
+.tabela-premium {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #181818;
+    margin-top: 20px;
+}
+
+.tabela-premium th {
+    background-color: #111;
+    color: #d4af37;
+    padding: 15px;
+    border-bottom: 2px solid #d4af37;
+    font-family: 'Oswald', sans-serif;
+}
+
+.tabela-premium td {
+    padding: 15px;
+    border-bottom: 1px solid #222;
+}
+
+/* =========================================
+   ALINHAMENTO DO CONTEÚDO PRINCIPAL
+   ========================================= */
+.container-painel {
+    padding: 130px 8% 50px 8%; 
+    min-height: 100vh;
+}
+
+/* =========================================
+   VISIBILIDADE DOS TÍTULOS
+   ========================================= */
+.titulo-sessao {
+    color: #ffffff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.linha-dourada {
+    width: 60px;
+    height: 3px;
+    background-color: #d4af37;
+    margin-bottom: 25px;
+}
+
+/* Ajuste das caixas (Cards) de administração */
+.card-agendamento {
+    background-color: #111;
+    border-top: 4px solid #d4af37;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    margin: 0 auto 30px auto; 
+}
+
+/* =========================================
+   CAMPOS DE PESQUISA E FORMULÁRIOS ADMIN
+   ========================================= */
+.form-admin-inline {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.form-admin-inline input,
+.search-box input {
+    background-color: #121212;
+    border: 1px solid #333;
+    color: #ffffff;
+    padding: 14px 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    border-radius: 4px;
+    outline: none;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.form-admin-inline input:focus,
+.search-box input:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+.form-admin-inline .btn-dourado-full {
+    width: auto;
+    white-space: nowrap;
+    margin-top: 0;
+    padding: 14px 25px !important;
+}
+
+/* =========================================
+   BOTÕES DE ADMINISTRAÇÃO 
+   ========================================= */
+.btn-detalhes {
+    background-color: transparent !important;
+    color: #d4af37 !important;
+    border: 1px solid #d4af37 !important;
+    padding: 6px 15px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.btn-detalhes:hover {
+    background-color: #d4af37 !important;
+    color: #000000 !important;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+}
+
+/* =========================================
+   TELA DE AUTENTICAÇÃO DOS COLABORADORES
+   ========================================= */
+.admin-auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0a0a0a;
+    background-image: linear-gradient(rgba(10,10,10,0.8), rgba(10,10,10,0.9)), 
+                      url('../assets/backgrounds/admin-login-bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.input-admin-auth {
+    background-color: #121212;
+    border: 1px solid #333;
+    color: #ffffff;
+    padding: 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    border-radius: 4px;
+    outline: none;
+    width: 100%;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.input-admin-auth:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.2);
+}
+
+/* =========================================
+   📱 MODO CELULAR: CARD DE ADMIN CENTRALIZADO
+   ========================================= */
+@media (max-width: 768px) {
+    .admin-auth-container {
+        align-items: center !important;
+        padding: 20px !important;
+    }
+    
+    .admin-auth-container .modal-content {
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+        border-radius: 8px !important;
+        padding: 30px 20px !important;
+        animation: none !important;
+    }
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão | Al Capone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="painel-body">
+
+    <div id="adminAuth" class="admin-auth-container">
+        <div class="modal-content" style="max-width: 450px; margin: auto;">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <h1 style="color: #d4af37; font-family: 'Oswald', sans-serif;">AL CAPONE</h1>
+                <p style="color: #888; font-size: 12px; letter-spacing: 2px;">ACESSO RESTRITO</p>
+            </div>
+            
+            <h2 id="adminAuthTitle" style="margin-bottom: 20px; text-align: center;">LOGIN COLABORADOR</h2>
+            <div class="linha-dourada" style="margin: 0 auto 25px auto;"></div>
+
+            <div id="adminLogin">
+                <input type="text" id="adminUser" placeholder="E-mail ou CPF" class="input-admin-auth">
+                <input type="password" id="adminPass" placeholder="Senha" class="input-admin-auth">
+                <button id="btnEntrarAdmin" class="btn-dourado-full" onclick="entrarPainelAdmin()">ENTRAR NO SISTEMA</button>
+                <p class="link-rodape" style="text-align: center; margin-top: 20px;">
+                    Primeiro acesso? <a href="#" onclick="alternarTelaAdmin('cadastro')">Cadastre-se</a>
+                </p>
+            </div>
+
+            <div id="adminCadastro" style="display: none;">
+                <input type="text" id="adminNome" placeholder="Nome Completo" class="input-admin-auth">
+                <input type="text" id="adminCargo" placeholder="Cargo (Ex: Barbeiro, Gerente)" class="input-admin-auth">
+                
+                <input type="text" id="adminCPF" placeholder="CPF (Apenas números)" class="input-admin-auth" maxlength="11">
+                <input type="email" id="adminEmail" placeholder="E-mail Profissional" class="input-admin-auth">
+                
+                <input type="password" id="adminNewPass" placeholder="Crie uma Senha" class="input-admin-auth">
+                <input type="password" id="adminCodigoMestre" placeholder="Código de Autorização da Gerência" class="input-admin-auth" style="border-color: #d4af37;">
+                
+                <button class="btn-dourado-full" onclick="cadastrarColaborador()">CADASTRAR E ENTRAR</button>
+                <p class="link-rodape" style="text-align: center; margin-top: 20px;">
+                    Já possui conta? <a href="#" onclick="alternarTelaAdmin('login')">Faça Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div id="adminDashboard" style="display: none;">
+        <header class="navbar">
+        <div class="logo">AL CAPONE ADMIN</div>
+       <nav>
+    <a href="#" class="ativo" onclick="mostrarSecao('agenda-dia', this)">Agendamentos</a>
+    <a href="#" onclick="mostrarSecao('config-horarios', this)">Gerir Horários</a>
+    <a href="#" onclick="mostrarSecao('analise-dados', this)">Análise</a> <a href="#" onclick="mostrarSecao('clientes', this)">Clientes</a>
+</nav>
+        <button class="btn-sair" onclick="sairPainelAdmin()">SAIR</button>
+    </header>
+        <main class="container-painel">
+            
+            <section id="agenda-dia" class="painel-section">
+                <div class="card-agendamento">
+                    <h1 class="titulo-sessao">PRÓXIMOS CORTES</h1>
+                    <div class="linha-dourada"></div>
+                    <div style="overflow-x: auto;">
+                        <table class="tabela-premium">
+                            <thead>
+                                <tr>
+                                    <th>CLIENTE</th>
+                                    <th>SERVIÇO</th>
+                                    <th>BARBEIRO</th>
+                                    <th>HORÁRIO</th>
+                                    <th>STATUS</th>
+                                    <th>AÇÕES</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaAgenda"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card-agendamento" style="margin-top: 30px;">
+                    <h1 class="titulo-sessao">HISTÓRICO</h1>
+                    <div class="linha-dourada"></div>
+                    <div style="overflow-x: auto;">
+                        <table class="tabela-premium" style="opacity: 0.8;">
+                            <thead>
+                                <tr>
+                                    <th>CLIENTE</th>
+                                    <th>SERVIÇO</th>
+                                    <th>BARBEIRO</th>
+                                    <th>HORÁRIO</th>
+                                    <th>STATUS</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaHistorico"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="banners" class="painel-section" style="display:none;">
+                <div class="card-agendamento">
+                    <h1 class="titulo-sessao">BANNER ROTATIVO</h1>
+                    <div class="linha-dourada"></div>
+                    <div class="form-admin-inline">
+                        <input type="text" id="bannerLink" placeholder="Link da Foto (URL)">
+                        <input type="text" id="bannerTitulo" placeholder="Título do Banner">
+                        <button class="btn-dourado-full" onclick="adicionarBanner()">ADICIONAR</button>
+                    </div>
+                    <div id="listaBannersAdmin" class="grid-banners-preview"></div>
+                </div>
+            </section>
+
+            <section id="config-horarios" class="painel-section" style="display:none;">
+    <div class="card-agendamento">
+        <h1 class="titulo-sessao">DISPONIBILIDADE DO DIA</h1>
+        <p style="color: #888; font-size: 14px; margin-bottom: 20px;">Bloqueie horários que você não vai trabalhar ou adicione horas extras.</p>
+        <div class="linha-dourada"></div>
+        
+        <div style="margin-bottom: 30px;">
+            <label style="color: #d4af37; font-family: 'Oswald'; font-size: 18px; margin-right: 15px;">Selecione o Dia:</label>
+            <input type="date" id="dataGestaoAgenda" class="input-admin-auth" style="width: auto; display: inline-block;" onchange="carregarDisponibilidadeDoDia()">
+        </div>
+
+        <div id="gridGestaoHorarios" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; margin-bottom: 30px;">
+            <p style="color: #555; grid-column: 1/-1;">Selecione uma data acima para carregar a sua agenda.</p>
+        </div>
+
+        <div class="linha-dourada" style="width: 100%; height: 1px; background-color: #333;"></div>
+
+        <div class="form-admin-inline" style="margin-top: 30px;">
+            <label style="color: #d4af37; font-family: 'Oswald'; margin-right: 15px;">Criar Hora Extra:</label>
+            <input type="time" id="novoHorarioExtra" class="input-admin-auth" style="width: 150px;">
+            <button class="btn-dourado-full" style="width: auto; margin-top: 0;" onclick="adicionarHorarioExtra()">ADICIONAR</button>
+        </div>
+    </div>
+</section>
+
+<section id="analise-dados" class="painel-section" style="display:none;">
+    <div class="card-agendamento">
+        <h1 class="titulo-sessao">ANÁLISE DE AGENDAMENTOS</h1>
+        <div class="linha-dourada"></div>
+        
+        <div class="form-admin-inline" style="margin-bottom: 30px;">
+            <input type="number" id="analiseMes" placeholder="Mês (Ex: 05)" min="1" max="12" style="width: 100px;">
+            <input type="number" id="analiseAno" placeholder="Ano (Ex: 2026)" style="width: 120px;">
+            <button class="btn-dourado-full" style="width: auto; margin-top: 0;" onclick="carregarAnalise()">FILTRAR</button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px;" id="gridMetricas">
+            <p style="color: #888;">Filtre um mês para visualizar os dados.</p>
+        </div>
+    </div>
+</section>
+            <div id="modalEditarAgendamento" class="modal" style="display: none;">
+                
+    
+        <button class="btn-dourado-full" onclick="salvarEdicaoAgendamento()">SALVAR ALTERAÇÃO</button>
+    </div>
+</div>
+
+            <section id="clientes" class="painel-section" style="display:none;">
+                <div class="card-agendamento">
+                    <h1 class="titulo-sessao">CONSULTAR CLIENTE</h1>
+                    <div class="linha-dourada"></div>
+                    <div class="search-box">
+                        <input type="text" id="buscaCliente" placeholder="Digite Nome ou CPF..." oninput="buscarCliente()">
+                    </div>
+                    <div id="resultadoBusca" class="detalhes-cliente-admin">
+                        <p style="color: #555;">Use a busca acima para encontrar um cliente.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+.container-painel { 
+    padding: 130px 8% 50px; 
+}
+
+.servicos-grid-vitrine {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.servico-card-premium {
+    background-color: #151515;
+    border: 1px solid #222;
+    padding: 50px 30px;
+    text-align: center;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.servico-card-premium:hover, 
+.servico-card-premium.selecionado {
+    border-color: #d4af37;
+    background-color: #1a1a1a;
+    transform: translateY(-10px);
+}
+
+.icone-minimalista { 
+    font-size: 35px; 
+    color: #d4af37; 
+    margin-bottom: 20px; 
+    display: block; 
+}
+
+/* BANNER DE ELITE */
+.banner-promocional {
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                url('../assets/backgrounds/cliente-banner.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid #222;
+    cursor: pointer;
+    margin-bottom: 50px;
+    transition: 0.3s;
+}
+
+.banner-promocional:hover { 
+    border-color: #d4af37; 
+}
+
+.tag-premium { 
+    background: #d4af37; 
+    color: #000; 
+    padding: 4px 8px; 
+    font-size: 10px; 
+    font-weight: bold; 
+    border-radius: 2px; 
+}
+
+/* ESTILIZAÇÃO DOS BOTÕES */
+.btn-dourado-full, 
+.btn-assinatura-vip {
+    width: 100%;
+    background-color: #d4af37 !important;
+    color: #000 !important;
+    border: none !important;
+    padding: 16px !important;
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.btn-dourado-full:hover { 
+    background-color: #b5952f !important; 
+}
+
+/* ESTILIZAÇÃO DOS CAMPOS DE SELEÇÃO (BARBEIRO/DATA) */
+.form-premium-reserva select, 
+.form-premium-reserva input {
+    width: 100%;
+    background-color: #121212 !important;
+    border: 1px solid #333 !important;
+    color: #fff !important;
+    padding: 14px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.input-group label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 12px;
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Respiro para os títulos não encostarem nos cards */
+.header-vitrine { 
+    margin-bottom: 50px; 
+    padding-top: 20px; 
+}
+
+/* Grid de horários moderno */
+.grid-horarios {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.hora-slot {
+    background-color: #151515;
+    border: 1px solid #333;
+    color: #fff;
+    padding: 12px;
+    text-align: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.hora-slot.selecionado { 
+    background-color: #d4af37; 
+    color: #000; 
+    font-weight: bold; 
+}
+
+.hora-slot.indisponivel {
+    opacity: 0.2;
+    cursor: not-allowed;
+    background-color: #000;
+}
+
+.label-premium {
+    font-family: 'Oswald', sans-serif;
+    color: #d4af37;
+    font-size: 12px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* =========================================
+   ESTILIZAÇÃO DO BOTÃO SAIR (Padrão Agendar)
+   ========================================= */
+.btn-sair {
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #d4af37;
+    padding: 8px 25px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    border-radius: 3px;
+}
+
+.btn-sair:hover {
+    background-color: #d4af37;
+    color: #000000;
+}
+
+/* =========================================
+   CENTRALIZAÇÃO ABSOLUTA DO POP-UP (MODAL)
+   ========================================= */
+.modal {
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0.9); 
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #111;
+    border-top: 4px solid #d4af37;
+    padding: 40px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+}
+
+/* =========================================
+   ESTILIZAÇÃO DO CALENDÁRIO (INPUT DATE)
+   ========================================= */
+input[type="date"] {
+    background-color: #151515;
+    color: #ffffff;
+    border: 1px solid #333;
+    padding: 12px 15px;
+    width: 100%;
+    border-radius: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    outline: none;
+    transition: 0.3s;
+    color-scheme: dark; 
+}
+
+input[type="date"]:focus {
+    border-color: #d4af37;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1); 
+    cursor: pointer;
+}
+
+/* Container que empilha os textos */
+.boas-vindas-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px; 
+    padding: 10px 0;
+}
+
+.txt-saudacao {
+    font-size: 0.9rem; 
+    color: #cca353;    
+    text-transform: uppercase; 
+    letter-spacing: 1px;       
+}
+
+.txt-nome-cliente {
+    font-size: 1.6rem; 
+    color: #ffffff;    
+    font-weight: 700;
+    margin: 0;         
+    text-transform: capitalize; 
+}
+
+/* ===================================================
+   ESTILIZAÇÃO PREMIUM DOS INPUTS DO MODAL (EL CAPONE)
+   =================================================== */
+#barbeiroAgendamento, 
+#dataAgendamento {
+    width: 100%;
+    background-color: #141414; 
+    color: #ffffff; 
+    border: 1px solid #2a2a2a; 
+    padding: 12px 15px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+#barbeiroAgendamento:focus, 
+#dataAgendamento:focus {
+    border-color: #d4af37;
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+    background-color: #1a1a1a; 
+}
+
+#barbeiroAgendamento {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    padding-right: 40px; 
+    cursor: pointer;
+}
+
+#barbeiroAgendamento option {
+    background-color: #141414;
+    color: #ffffff;
+    padding: 10px;
+}
+
+#dataAgendamento::-webkit-calendar-picker-indicator {
+    filter: invert(75%) sepia(18%) saturate(1497%) hue-rotate(11deg) brightness(96%) contrast(89%);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#dataAgendamento::-webkit-calendar-picker-indicator:hover {
+    transform: scale(1.1);
+}
+
+/* =========================================
+   📱 MODO CELULAR: CARD DE SELEÇÃO CENTRALIZADO
+   ========================================= */
+@media (max-width: 768px) {
+    .banner-promocional {
+        padding: 30px 20px !important;
+        margin-bottom: 30px !important;
+        text-align: center;
+        background-position: left center !important; 
+    }
+
+    .banner-promocional h2 { 
+        font-size: 24px !important; 
+    }
+
+    #aba-historico > div { 
+        padding: 20px !important; 
+    }
+
+    .modal {
+        align-items: center !important;
+        padding: 20px !important;
+    }
+    
+    .modal-content.detail-modal {
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+        border-radius: 8px !important; 
+        padding: 30px 20px !important;
+        border-top: 4px solid #d4af37 !important;
+        animation: none !important;
+    }
+    
+    .step-container {
+        max-height: 65vh; 
+        overflow-y: auto;
+        padding-bottom: 20px;
+    }
+}

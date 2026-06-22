@@ -17,6 +17,13 @@ CORS(app)
 CODIGO_AUTORIZACAO_MASTER = "123456"
 
 # ==========================================
+# ROTA RAIZ (Para o Render não dar erro 404)
+# ==========================================
+@app.route('/', methods=['GET'])
+def home():
+    return "🚀 API da Barbearia El Capone está online e rodando perfeitamente na nuvem!", 200
+
+# ==========================================
 # ROTAS DO CLIENTE
 # ==========================================
 @app.route('/api/cadastro', methods=['POST'])
@@ -213,7 +220,7 @@ def alternar_bloqueio():
         executar_query("INSERT INTO disponibilidade_excecoes (colaborador_id, data, hora, tipo, status) VALUES (%s, %s, %s, 'Bloqueio', 'bloqueado')", (colab_id, data, hora))
     return jsonify({"status": "sucesso"}), 200
 
-# ROTA PARA ADICIONAR HORA EXTRA (Corrigindo o erro do popup)
+# ROTA PARA ADICIONAR HORA EXTRA
 @app.route('/api/admin/disponibilidade/extra', methods=['POST'])
 def adicionar_hora_extra():
     dados = request.get_json()
@@ -255,6 +262,13 @@ def horarios_disponiveis():
     todas_as_horas = sorted(list(set(grade + horas_extras)))
     return jsonify([h for h in todas_as_horas if h not in horas_ocupadas and h not in horas_bloqueadas]), 200
 
+# ==========================================
+# CONFIGURAÇÃO DE PORTA PARA A NUVEM (RENDER)
+# ==========================================
 if __name__ == '__main__':
-    print("🚀 Servidor da El Capone rodando na porta 5000...")
-    app.run(debug=True, port=5000)
+    print("🚀 Preparando o servidor da El Capone...")
+    import os
+    # O Render exige que o host seja '0.0.0.0' para acessar a internet
+    # e ele mesmo fornece a variável de ambiente PORT.
+    porta = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=porta)

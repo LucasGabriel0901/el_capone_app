@@ -1,18 +1,31 @@
+import os
 import psycopg2
 from psycopg2 import OperationalError
+from dotenv import load_dotenv
+
+# Carrega as variáveis do .env (se você estiver rodando no seu PC)
+load_dotenv()
 
 def criar_conexao():
     """
     Cria e retorna uma conexão com o banco de dados PostgreSQL.
     """
     try:
-        conexao = psycopg2.connect(
-            host="localhost",
-            database="el_capone",
-            user="postgres",
-            password="Luc@s6575",
-            port="5432"
-        )
+        # 1. Tenta pegar o link gigante do Neon (que está no Render ou no seu .env)
+        db_url = os.environ.get("DATABASE_URL")
+        
+        if db_url:
+            # Se achou o link, conecta direto na nuvem!
+            conexao = psycopg2.connect(db_url)
+        else:
+            # 2. Se não achou (ex: rodando local sem .env), usa o banco do seu PC
+            conexao = psycopg2.connect(
+                host="localhost",
+                database="el_capone",
+                user="postgres",
+                password="Luc@s6575",
+                port="5432"
+            )
         return conexao
     except OperationalError as e:
         print(f"❌ Erro de Conexão: O banco de dados está offline ou os dados estão incorretos. Detalhe: {e}")
@@ -90,9 +103,9 @@ def buscar_todos(query, parametros=None):
             conexao.close()
         return []
 
-# Teste de conexão local
+# Teste de conexão
 if __name__ == "__main__":
     conn = criar_conexao()
     if conn:
-        print("Status do Sistema: ✅ Estável")
+        print("Status do Sistema: ✅ Conectado com sucesso ao banco!")
         conn.close()

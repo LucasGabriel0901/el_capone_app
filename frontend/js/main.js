@@ -73,7 +73,7 @@ async function simularLogin() {
 
     try {
         // 2. Dispara os dados para a nossa rota de validação
-        const resposta = await fetch('http://127.0.0.1:5000/api/login', {
+        const resposta = await fetch('https://el-capone-app.onrender.com/api/login',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -136,7 +136,7 @@ async function simularCadastro() {
 
     try {
         // 4. Envia o pacote para o seu motor Python via método POST
-        const resposta = await fetch('http://127.0.0.1:5000/api/cadastro', {
+        const resposta = await fetch('https://el-capone-app.onrender.com/api/cadastro', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

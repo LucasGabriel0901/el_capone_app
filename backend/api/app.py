@@ -52,9 +52,51 @@ def login_cliente():
             return jsonify({"status": "sucesso", "mensagem": f"Olá, {nome}! Login autorizado.", "usuario": {"id": id_usuario, "nome": nome}}), 200
     return jsonify({"status": "erro", "mensagem": "Usuário ou senha incorretos."}), 401
 
-# ROTA PARA LISTAR PROFISSIONAIS NO FRONT-END
-@app.route('/api/colaboradores', methods=['GET'])
-def listar_colaboradores():
+# ROTA PARA LISTAR E CADASTRAR PROFISSIONAIS
+@app.route('/api/colaboradores', methods=['GET', 'POST'])
+def colaboradores():
+    if request.method == 'POST':
+        dados = request.get_json() or {}
+
+        nome = dados.get('nome')
+        cargo = dados.get('cargo')
+        cpf = dados.get('cpf')
+        email = dados.get('email')
+        senha_pura = dados.get('senha')
+        whatsapp = dados.get('whatsapp') or dados.get('telefone') or ""
+        codigo_autorizacao = dados.get('codigo_autorizacao')
+
+        if codigo_autorizacao != CODIGO_AUTORIZACAO_MASTER:
+            return jsonify({"status": "erro", "mensagem": "Código de autorização inválido."}), 403
+
+        if not all([nome, cargo, cpf, email, senha_pura]):
+            return jsonify({"status": "erro", "mensagem": "Preencha todos os campos obrigatórios."}), 400
+
+        existe = buscar_registro(
+            "SELECT id FROM colaboradores WHERE email = %s OR cpf = %s",
+            (email, cpf)
+        )
+
+        if existe:
+            return jsonify({"status": "erro", "mensagem": "Já existe um colaborador com este e-mail ou CPF."}), 409
+
+        senha_criptografada = generate_password_hash(senha_pura)
+
+        query = """
+            INSERT INTO colaboradores (nome, cargo, cpf, email, senha, whatsapp)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """
+
+        sucesso, mensagem = executar_query(
+            query,
+            (nome, cargo, cpf, email, senha_criptografada, whatsapp)
+        )
+
+        if sucesso:
+            return jsonify({"status": "sucesso", "mensagem": "Colaborador cadastrado com sucesso."}), 201
+
+        return jsonify({"status": "erro", "mensagem": mensagem}), 400
+
     query = "SELECT id, nome, cargo FROM colaboradores"
     resultados = buscar_todos(query)
     colaboradores = [{"id": l[0], "nome": l[1], "cargo": l[2]} for l in resultados]
@@ -154,6 +196,60 @@ def atualizar_status_agendamento(agendamento_id, acao):
     
     if sucesso: return jsonify({"status": "sucesso", "mensagem": f"Agendamento {novo_status} com sucesso!"}), 200
     return jsonify({"status": "erro", "mensagem": "Erro ao atualizar: " + msg}), 400
+
+@app.route('/api/clientes/busca', methods=['GET'])
+def buscar_clientes():
+    termo = request.args.get('termo', '').strip()
+
+    if len(termo) < 3:
+        return jsonify([]), 200
+
+    termo_like = f"%{termo}%"
+    query = """
+        SELECT id, nome, cpf, email, telefone, data_nascimento
+        FROM clientes
+        WHERE nome ILIKE %s OR cpf ILIKE %s OR email ILIKE %s OR telefone ILIKE %s
+        ORDER BY nome ASC
+        LIMIT 20
+    """
+    resultados = buscar_todos(query, (termo_like, termo_like, termo_like, termo_like))
+
+    clientes = [
+        {
+            "id": l[0],
+            "nome": l[1],
+            "cpf": l[2],
+            "email": l[3],
+            "telefone": l[4],
+            "data_nascimento": str(l[5]) if l[5] else ""
+        }
+        for l in resultados
+    ]
+
+    return jsonify(clientes), 200
+
+
+@app.route('/api/agendamentos/<int:agendamento_id>/editar', methods=['PUT'])
+def editar_agendamento(agendamento_id):
+    dados = request.get_json() or {}
+    nova_data = dados.get('data')
+    nova_hora = dados.get('hora')
+
+    if not nova_data or not nova_hora:
+        return jsonify({"status": "erro", "mensagem": "Data e horário são obrigatórios."}), 400
+
+    query = """
+        UPDATE agendamentos
+        SET data = %s, hora = %s, updated_at = CURRENT_TIMESTAMP
+        WHERE id = %s
+    """
+    sucesso, mensagem = executar_query(query, (nova_data, nova_hora, agendamento_id))
+
+    if sucesso:
+        return jsonify({"status": "sucesso", "mensagem": "Agendamento atualizado com sucesso."}), 200
+
+    return jsonify({"status": "erro", "mensagem": "Erro ao atualizar agendamento: " + mensagem}), 400
+
 
 @app.route('/api/analises/agendamentos', methods=['GET'])
 def analise_agendamentos():
